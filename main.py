@@ -15,8 +15,8 @@ def paridad(num):
         for i in range(num,-1,-2):      # Desde numero, hasta -1, descendiendo de 2 en 2
             print(i)
 
-
 def ejercicio_1():
+    print("\n\n-------EJERCICIO 1-------\n")
     NUMERO = input("Introduzca un numero entero:")
     try:
         num = int(NUMERO)
@@ -47,12 +47,12 @@ def estadisticas_personas(lista):
     print(f"Cantidad de personas menores de edad: {total - cont}")
     print(f"Cantidad de personas masculinas mayores de edad: {cont3}")
     print(f"Cantidad de personas femeninas menores de edad: {cont4}")
-    print(f"Porcentaje de mayores de edad respecto al total: {cont2/total:.2f}%")
+    print(f"Porcentaje de mayores de edad respecto al total: {cont/total:.2f}%")
     print(f"Porcentaje de mujeres respecto al total: {(cont2)/total:.2f}%")
     
-
 def ejercicio_2():
-    lista_sexos = ['M','F','M','M','M','F','M','F','F','F','M']     # M = 'Male' -- F = 'Female'
+    print("\n\n-------EJERCICIO 2-------\n")
+    lista_sexos = ['M','F','M','M','M','F','M','F','M','F','M']     # M = 'Male' -- F = 'Female'
     lista_edades = [16,32,27,12,13,23,29,13,17,21,50]
     lista_ejemplo = [(sexo, edad) for sexo, edad in zip(lista_sexos,lista_edades)]
     print(f"Lista de ejemplo: {lista_ejemplo}")
@@ -61,9 +61,40 @@ def ejercicio_2():
         PERSONAS = sys.argv[1]      # Se pasaría el vector de datos como parámetro al ejecutar el programa (main.py)
         estadisticas_personas(PERSONAS)     # Ver las estadísticas de la lista que se ha pasado como input.
   
+def calcular_salario(horas,tarifa):
+    if horas <= 40:
+        sueldo = horas * tarifa
 
+    else:
+        horas_extra = horas - 40                            # Cuantas horas extra
+        sueldo = 40 * tarifa + horas_extra * (tarifa*1.5)   # 40 horas a tarifa normal + x horas extra tarifa aumentada 50%
+
+    return sueldo
+
+def ejercicio_3():
+    print("\n\n-------EJERCICIO 3-------\n")
+    try:
+        HORASTRABAJADAS = input("Introduzca el numero de horas trabajadas: ")
+        horas = float(HORASTRABAJADAS)
+        if horas < 0:
+            raise Exception ("Debe ser un numero positivo")
+        
+    except ValueError:
+        raise Exception("Debe ser un numero")
+
+    try:
+        TARIFA = input("Introduzca la tarifa establecida (eur/hora): ")
+        tarifa = float(TARIFA)
+        if tarifa < 0:
+            raise Exception ("Debe ser un numero positivo")
+        
+    except ValueError:
+        raise Exception("Debe ser un numero")
+
+    print(f"Sueldo: {calcular_salario(horas,tarifa)}")
 
 if __name__ == "__main__":
     ejercicio_1()
     ejercicio_2()
+    ejercicio_3()
     
